@@ -1,0 +1,85 @@
+plugins {
+	id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+	id 'org.jetbrains.kotlin.plugin.allopen' version '1.3.72'
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.kafka'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+bootJar {
+	enabled = false
+	version = "1.3-RELEASE"
+}
+
+repositories {
+	mavenCentral()
+}
+
+subprojects {
+	group "com.kafka"
+
+	apply plugin: "kotlin"
+	apply plugin: "kotlin-spring"
+	apply plugin: "io.spring.dependency-management"
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+		implementation 'org.springframework.boot:spring-boot-starter-web:2.3.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-configuration-processor:2.3.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-starter-actuator:2.3.4.RELEASE'
+		implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-config:0.3.0.RELEASE'
+		implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.2.RELEASE'
+		implementation 'org.springframework.cloud:spring-cloud-stream'
+		implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+		implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
+		implementation 'org.springframework.kafka:spring-kafka'
+
+		implementation 'com.google.code.gson:gson:2.8.5'
+
+
+
+
+
+		runtime group: 'org.springframework.cloud', name: 'spring-cloud-dependencies', version: 'Hoxton.SR8', ext: 'pom'
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		}
+		testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
+		testImplementation 'org.springframework.kafka:spring-kafka-test:2.5.4.RELEASE'
+
+		testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
+
+		testImplementation 'org.mockito:mockito-inline:3.5.13'
+
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR8"
+		}
+	}
+
+	sourceSets {
+		main.java.srcDirs += "src/main/kotlin"
+	}
+
+	compileKotlin {
+		kotlinOptions.jvmTarget = "1.8"
+	}
+
+	compileTestKotlin {
+		kotlinOptions.jvmTarget = "1.8"
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+}

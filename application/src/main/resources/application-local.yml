@@ -1,0 +1,32 @@
+#spring:
+#  profiles: local
+#  application:
+#    name: kafka-demo
+#  sleuth:
+#    propagation-keys:
+#      - x-correlation-id
+#      - x-session-id
+#  cloud:
+#    stream:
+#      bindings:
+#        input:
+#          destination: kafka-demo
+#          group: kafka-demo-group
+#          content-type: application/json
+#      kafka:
+#        bindings:
+#          input:
+#            consumer:
+#              enableDlq: true
+#              dlqName: kafka-demo-topic-dlq
+#              autoCommitOnError: true
+#              ackEachRecord: true
+#              configuration:
+#                max.poll.interval.ms: 90000
+#        binder:
+#          zkNodes: localhost:2181
+#          brokers: localhost:9092
+#          auto-create-topics: true
+#          replicationFactor: 1
+#  main:
+#    allow-bean-definition-overriding: true

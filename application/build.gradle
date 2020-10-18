@@ -1,0 +1,8 @@
+apply plugin: 'application'
+
+mainClassName = 'com.kafka.Boot'
+
+dependencies {
+    implementation project(":kafka-consumer")
+    implementation project(":input-boundary")
+}
