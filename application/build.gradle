@@ -5,4 +5,7 @@ mainClassName = 'com.kafka.Boot'
 dependencies {
     implementation project(":kafka-consumer")
     implementation project(":input-boundary")
+    implementation project(":usecase")
+    implementation project(":output-boundary")
+    implementation project(":repository")
 }

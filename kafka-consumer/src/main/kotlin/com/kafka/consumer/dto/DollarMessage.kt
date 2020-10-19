@@ -6,7 +6,7 @@ import java.time.LocalDate
 data class DollarMessage (
         val buy: BigDecimal,
         val sell: BigDecimal,
-        val dollarDate: LocalDate,
+        val dollarDate: String,
         val high: BigDecimal,
         val low: BigDecimal
 )

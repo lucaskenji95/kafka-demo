@@ -2,6 +2,6 @@ package com.kafka.input.usecase
 
 import com.kafka.input.dto.DollarInputDto
 
-interface Dollar {
+interface DollarUseCase {
     fun execute(dollarInputDto: DollarInputDto)
 }
